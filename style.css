@@ -1,0 +1,49 @@
+*{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+body{
+   background-image: url("https://images.unsplash.com/photo-1694980720246-6478887a071b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80")
+}
+.form{
+    background-color: rgba(158, 255, 255, 0.103);
+    text-align: center;
+    margin: 50px auto;
+    border-radius: 13px;
+    padding: 8px;
+}
+input,label{
+    width: 100%;
+    text-align: center;
+    margin: 13px auto;
+    font-size: 20px;
+    border-radius: 5px;
+    outline: none;
+    border-color: rgb(175, 175, 235);
+}
+label{
+    color: rgb(247, 247, 255);
+    font-style: bold;
+    text-align: left;
+}
+button{
+    border: none;
+    background-color: blueviolet;
+    outline: none;
+    width: 100%;
+    height: auto;
+    font-size: 22px;
+    border-radius: 5px;
+    margin-top: 15px;
+    color: aliceblue;
+    border: none;
+    padding: 10px;
+}
+#heading{
+    font-size: 90px;
+    color: rgb(215, 215, 226);
+}
+p{
+    font-size: 18px;
+    margin-bottom: 40px;
+    color: rgb(215, 215, 226);
+}
