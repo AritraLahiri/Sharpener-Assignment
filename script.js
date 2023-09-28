@@ -1,28 +1,70 @@
-const list = document.getElementsByClassName("list-group-item");
-const listTg = document.getElementsByClassName("list-group-item-c");
-const listQr = document.querySelectorAll(".list-group-item");
-const listHeading = document.querySelectorAll(".title");
-listQr[1].style.color = "green";
-list[2].style.backgroundColor = "green";
-list[2].style.color = "#ccc";
-listTg[0].style.color = "green";
-for (let i = 0; i < list.length; i++) {
-  list[i].style.fontWeight = "bold";
+var form = document.getElementById("addForm");
+var itemList = document.getElementById("items");
+var filter = document.getElementById("filter");
+
+// Form submit event
+form.addEventListener("submit", addItem);
+// Delete event
+itemList.addEventListener("click", removeItem);
+// Filter event
+filter.addEventListener("keyup", filterItems);
+
+// Add item
+function addItem(e) {
+  e.preventDefault();
+
+  // Get input value
+  var newItem = document.getElementById("item").value;
+
+  // Create new li element
+  var li = document.createElement("li");
+  // Add class
+  li.className = "list-group-item";
+  // Add text node with input value
+  li.appendChild(document.createTextNode(newItem));
+
+  // Create del button element
+  var deleteBtn = document.createElement("button");
+
+  // Add classes to del button
+  deleteBtn.className = "btn btn-danger btn-sm float-right delete";
+
+  // Append text node
+  deleteBtn.appendChild(document.createTextNode("X"));
+
+  // Append button to li
+  li.appendChild(deleteBtn);
+
+  // Append li to list
+  itemList.appendChild(li);
 }
-for (let i = 0; i < listQr.length; i++) {
-  if (i % 2 != 0) {
-    listQr[i].style.color = "green";
+
+// Remove item
+function removeItem(e) {
+  if (e.target.classList.contains("delete")) {
+    if (confirm("Are You Sure?")) {
+      var li = e.target.parentElement;
+      itemList.removeChild(li);
+    }
+  } else if (e.target.classList.contains("edit")) {
+    if (confirm("Do you want to edit?")) {
+    }
   }
 }
-let div = document.createElement("div");
-let div2 = document.createElement("div");
-let textNode = document.createTextNode("Hello");
-let textNode2 = document.createTextNode("Hello");
-div.appendChild(textNode);
-div2.appendChild(textNode2);
-let container = document.querySelector("#main");
-let items = document.querySelector("#items");
-let list1 = document.querySelectorAll(".list-group-item")[0];
-let h2 = document.querySelectorAll(".title");
-items.insertBefore(div, list1);
-container.insertBefore(div2, h2[0]);
+
+// Filter Items
+function filterItems(e) {
+  // convert text to lowercase
+  var text = e.target.value.toLowerCase();
+  // Get lis
+  var items = itemList.getElementsByTagName("li");
+  // Convert to an array
+  Array.from(items).forEach(function (item) {
+    var itemName = item.firstChild.textContent;
+    if (itemName.toLowerCase().indexOf(text) != -1) {
+      item.style.display = "block";
+    } else {
+      item.style.display = "none";
+    }
+  });
+}
