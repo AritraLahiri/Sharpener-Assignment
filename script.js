@@ -5,4 +5,5 @@ function onSignUp(event) {
   localStorage.setItem("Email", event.target.email.value);
   localStorage.setItem("Date", event.target.date.value);
   localStorage.setItem("Time", event.target.timeCall.value);
+  localStorage.setItem("myObj", JSON.stringify(event));
 }
