@@ -31,27 +31,25 @@ function onSignUp(event) {
 }
 const getData = () => {
   axios
-    .get(
-      "https://crudcrud.com/api/dbb135726d234c6eab8879608a70e509/AppointmentAdd"
-    )
+    .get("http://localhost:3000/user")
     .then((response) => {
       console.log(response.data);
       response.data.forEach((element) => {
         const {
-          Name,
-          Email = "sam17@gmail.com",
-          Phone = "55656556",
+          name,
+          email = "sam17@gmail.com",
+          phone = "55656556",
           _id,
         } = element;
         const p = document.createElement("p");
         const inputCustId = document.createElement("input");
         const btn = document.createElement("button");
         const Editbtn = document.createElement("button");
-        btn.id = Email;
-        Editbtn.id = Email;
+        btn.id = email;
+        Editbtn.id = email;
         inputCustId.setAttribute("type", "hidden");
         const data = document.createTextNode(
-          ` Name : ${Name} , Email : ${Email} , Phone ${Phone}  `
+          ` Name : ${name} , Email : ${email} , Phone ${phone}  `
         );
         const btnData = document.createTextNode("Delete");
         const btnEditData = document.createTextNode("Edit");
@@ -89,17 +87,15 @@ const getData = () => {
 };
 
 const postData = (event) => {
+  const data = {
+    Name: event.target.username.value,
+    Email: event.target.email.value,
+    Date: event.target.date.value,
+    Phone: event.target.phone.value,
+    Time: event.target.timeCall.value,
+  };
   axios
-    .post(
-      "https://crudcrud.com/api/dbb135726d234c6eab8879608a70e509/AppointmentAdd",
-      {
-        Name: event.target.username.value,
-        Email: event.target.email.value,
-        Date: event.target.date.value,
-        Phone: event.target.phone.value,
-        Time: event.target.timeCall.value,
-      }
-    )
+    .post("http://localhost:3000/add-user", data)
     .then((response) => {
       console.log(response);
       getData();
